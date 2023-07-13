@@ -9,10 +9,15 @@ def process_file(file: str) -> list[list[int]]:
         elves = f.read().split("\n\n")
         return [list(map(int, elf.split())) for elf in elves]
 
-def part_two(file: str) -> 
+def part_two(file: str) -> int:
+    elves_cals = process_file(file)
+    cal_sums = [ sum(elf_cals) for elf_cals in elves_cals ]
+    cal_sums.sort(reverse=True)
+    return sum( cal_sums[i] for i in range(3))
+    
 if __name__ == "__main__":
-    input_path = "./day_01/ex.txt"
+    input_path = "./day_01/input.txt"
     print("==== PART 1 ====")
     print(part_one(input_path))
     print("==== PART 2 ====")
-    print(part_one(input_path))
+    print(part_two(input_path))
